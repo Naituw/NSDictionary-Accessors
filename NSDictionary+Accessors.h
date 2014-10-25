@@ -30,5 +30,6 @@
 - (long long)longLongForKey:(NSString *)key;
 - (unsigned long long)unsignedLongLongForKey:(NSString *)key;
 - (BOOL)boolForKey:(NSString *)key;
+- (time_t)timeForKey:(NSString *)key;
 
 @end

@@ -176,4 +176,23 @@
     return NO;
 }
 
+- (time_t)timeForKey:(NSString *)key
+{
+    NSString *stringTime = [self objectForKey:key];
+    if (![stringTime isKindOfClass:[NSString class]]) {
+        stringTime = nil;
+    }
+    struct tm created;
+    time_t now;
+    time(&now);
+    
+    if (stringTime.length) {
+        if (strptime([stringTime UTF8String], "%a %b %d %H:%M:%S %z %Y", &created) == NULL) {
+            strptime([stringTime UTF8String], "%a, %d %b %Y %H:%M:%S %z", &created);
+        }
+        return mktime(&created);
+    }
+    return 0;
+}
+
 @end
